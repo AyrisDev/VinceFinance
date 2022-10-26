@@ -5,7 +5,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/echelonfoundation/echelon/v3/x/inflation/types"
+	"github.com/AyrisDev/VinceFinance/x/inflation/types"
 )
 
 func (suite *KeeperTestSuite) TestPeriod() {

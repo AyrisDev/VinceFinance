@@ -7,7 +7,7 @@ updates:
     time: "10:00"
   open-pull-requests-limit: 10
   reviewers:
-  - echelonfoundation
+  - ayrisdev
   labels:
   - dependencies
 - package-ecosystem: docker
@@ -17,7 +17,7 @@ updates:
     time: "10:00"
   open-pull-requests-limit: 10
   reviewers:
-  - echelonfoundation
+  - ayrisdev
 - package-ecosystem: gomod
   directory: "/"
   schedule:

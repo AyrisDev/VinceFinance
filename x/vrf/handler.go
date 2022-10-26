@@ -5,8 +5,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/echelonfoundation/echelon/v3/x/vrf/keeper"
-	"github.com/echelonfoundation/echelon/v3/x/vrf/types"
+	"github.com/AyrisDev/VinceFinance/x/vrf/keeper"
+	"github.com/AyrisDev/VinceFinance/x/vrf/types"
 )
 
 // NewHandler ...

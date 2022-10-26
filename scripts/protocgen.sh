@@ -4,7 +4,7 @@ set -eo pipefail
 
 protoc_gen_gocosmos() {
   if ! grep "github.com/gogo/protobuf => github.com/regen-network/protobuf" go.mod &>/dev/null ; then
-    echo -e "\tPlease run this command from somewhere inside the echelon folder."
+    echo -e "\tPlease run this command from somewhere inside the vince folder."
     return 1
   fi
 
@@ -41,7 +41,7 @@ for dir in $proto_dirs; do
 done
 
 # move resulting files to the right places
-cp -r github.com/echelonfoundation/echelon/v*/x/* x/
+cp -r github.com/AyrisDev/VinceFinance/v*/x/* x/
 rm -rf github.com
 
 # combine swagger files

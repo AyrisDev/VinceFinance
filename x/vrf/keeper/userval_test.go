@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	keepertest "github.com/echelonfoundation/echelon/v3/testutil/keeper"
-	"github.com/echelonfoundation/echelon/v3/x/vrf/keeper"
-	"github.com/echelonfoundation/echelon/v3/x/vrf/types"
+	keepertest "github.com/AyrisDev/VinceFinance/testutil/keeper"
+	"github.com/AyrisDev/VinceFinance/x/vrf/keeper"
+	"github.com/AyrisDev/VinceFinance/x/vrf/types"
 	"github.com/stretchr/testify/require"
 )
 

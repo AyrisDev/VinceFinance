@@ -1,11 +1,11 @@
 syntax = "proto3";
-package echelon.inflation.v1;
+package vince.inflation.v1;
 
 import "gogoproto/gogo.proto";
 
-import "echelon/inflation/v1/inflation.proto";
+import "vince/inflation/v1/inflation.proto";
 
-option go_package = "github.com/echelonfoundation/echelon/v3/x/inflation/types";
+option go_package = "github.com/AyrisDev/VinceFinance/x/inflation/types";
 
 // GenesisState defines the inflation module's genesis state.
 message GenesisState {

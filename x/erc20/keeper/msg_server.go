@@ -12,8 +12,8 @@ import (
 
 	evmtypes "github.com/tharsis/ethermint/x/evm/types"
 
-	"github.com/echelonfoundation/echelon/v3/contracts"
-	"github.com/echelonfoundation/echelon/v3/x/erc20/types"
+	"github.com/AyrisDev/VinceFinance/contracts"
+	"github.com/AyrisDev/VinceFinance/x/erc20/types"
 )
 
 var _ types.MsgServer = &Keeper{}

@@ -3,7 +3,7 @@ package keeper
 import (
 	"github.com/cosmos/cosmos-sdk/store/prefix"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/echelonfoundation/echelon/v3/x/vrf/types"
+	"github.com/AyrisDev/VinceFinance/x/vrf/types"
 )
 
 // SetRandomval set a specific randomval in the store from its index

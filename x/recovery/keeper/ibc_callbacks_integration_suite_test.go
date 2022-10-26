@@ -15,13 +15,13 @@ import (
 	channeltypes "github.com/cosmos/ibc-go/v3/modules/core/04-channel/types"
 	ibcgotesting "github.com/cosmos/ibc-go/v3/testing"
 
-	ibctesting "github.com/echelonfoundation/echelon/v3/ibc/testing"
+	ibctesting "github.com/AyrisDev/VinceFinance/ibc/testing"
 
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
-	"github.com/echelonfoundation/echelon/v3/app"
-	claimtypes "github.com/echelonfoundation/echelon/v3/x/claims/types"
-	inflationtypes "github.com/echelonfoundation/echelon/v3/x/inflation/types"
-	"github.com/echelonfoundation/echelon/v3/x/recovery/types"
+	"github.com/AyrisDev/VinceFinance/app"
+	claimtypes "github.com/AyrisDev/VinceFinance/x/claims/types"
+	inflationtypes "github.com/AyrisDev/VinceFinance/x/inflation/types"
+	"github.com/AyrisDev/VinceFinance/x/recovery/types"
 )
 
 type IBCTestingSuite struct {
@@ -29,12 +29,12 @@ type IBCTestingSuite struct {
 	coordinator *ibcgotesting.Coordinator
 
 	// testing chains used for convenience and readability
-	EchelonChain      *ibcgotesting.TestChain
+	VinceChain      *ibcgotesting.TestChain
 	IBCOsmosisChain *ibcgotesting.TestChain
 	IBCCosmosChain  *ibcgotesting.TestChain
 
-	pathOsmosisEchelon  *ibcgotesting.Path
-	pathCosmosEchelon   *ibcgotesting.Path
+	pathOsmosisVince  *ibcgotesting.Path
+	pathCosmosVince   *ibcgotesting.Path
 	pathOsmosisCosmos *ibcgotesting.Path
 }
 
@@ -52,22 +52,22 @@ func TestIBCTestingSuite(t *testing.T) {
 func (suite *IBCTestingSuite) SetupTest() {
 	// initializes 3 test chains
 	suite.coordinator = ibctesting.NewCoordinator(suite.T(), 1, 2)
-	suite.EchelonChain = suite.coordinator.GetChain(ibcgotesting.GetChainID(1))
+	suite.VinceChain = suite.coordinator.GetChain(ibcgotesting.GetChainID(1))
 	suite.IBCOsmosisChain = suite.coordinator.GetChain(ibcgotesting.GetChainID(2))
 	suite.IBCCosmosChain = suite.coordinator.GetChain(ibcgotesting.GetChainID(3))
-	suite.coordinator.CommitNBlocks(suite.EchelonChain, 2)
+	suite.coordinator.CommitNBlocks(suite.VinceChain, 2)
 	suite.coordinator.CommitNBlocks(suite.IBCOsmosisChain, 2)
 	suite.coordinator.CommitNBlocks(suite.IBCCosmosChain, 2)
 
-	// Mint coins locked on the echelon account generated with secp.
-	coinEchelon := sdk.NewCoin("aechelon", sdk.NewInt(10000))
-	coins := sdk.NewCoins(coinEchelon)
-	err := suite.EchelonChain.App.(*app.Echelon).BankKeeper.MintCoins(suite.EchelonChain.GetContext(), inflationtypes.ModuleName, coins)
+	// Mint coins locked on the Vince account generated with secp.
+	coinVince := sdk.NewCoin("avince", sdk.NewInt(10000))
+	coins := sdk.NewCoins(coinVince)
+	err := suite.VinceChain.App.(*app.Vince).BankKeeper.MintCoins(suite.VinceChain.GetContext(), inflationtypes.ModuleName, coins)
 	suite.Require().NoError(err)
-	err = suite.EchelonChain.App.(*app.Echelon).BankKeeper.SendCoinsFromModuleToAccount(suite.EchelonChain.GetContext(), inflationtypes.ModuleName, suite.IBCOsmosisChain.SenderAccount.GetAddress(), coins)
+	err = suite.VinceChain.App.(*app.Vince).BankKeeper.SendCoinsFromModuleToAccount(suite.VinceChain.GetContext(), inflationtypes.ModuleName, suite.IBCOsmosisChain.SenderAccount.GetAddress(), coins)
 	suite.Require().NoError(err)
 
-	// Mint coins on the osmosis side which we'll use to unlock our aechelon
+	// Mint coins on the osmosis side which we'll use to unlock our avince
 	coinOsmo := sdk.NewCoin("uosmo", sdk.NewInt(10))
 	coins = sdk.NewCoins(coinOsmo)
 	err = suite.IBCOsmosisChain.GetSimApp().BankKeeper.MintCoins(suite.IBCOsmosisChain.GetContext(), minttypes.ModuleName, coins)
@@ -75,7 +75,7 @@ func (suite *IBCTestingSuite) SetupTest() {
 	err = suite.IBCOsmosisChain.GetSimApp().BankKeeper.SendCoinsFromModuleToAccount(suite.IBCOsmosisChain.GetContext(), minttypes.ModuleName, suite.IBCOsmosisChain.SenderAccount.GetAddress(), coins)
 	suite.Require().NoError(err)
 
-	// Mint coins on the cosmos side which we'll use to unlock our aechelon
+	// Mint coins on the cosmos side which we'll use to unlock our avince
 	coinAtom := sdk.NewCoin("uatom", sdk.NewInt(10))
 	coins = sdk.NewCoins(coinAtom)
 	err = suite.IBCCosmosChain.GetSimApp().BankKeeper.MintCoins(suite.IBCCosmosChain.GetContext(), minttypes.ModuleName, coins)
@@ -84,23 +84,23 @@ func (suite *IBCTestingSuite) SetupTest() {
 	suite.Require().NoError(err)
 
 	claimparams := claimtypes.DefaultParams()
-	claimparams.AirdropStartTime = suite.EchelonChain.GetContext().BlockTime()
+	claimparams.AirdropStartTime = suite.VinceChain.GetContext().BlockTime()
 	claimparams.EnableClaims = true
-	suite.EchelonChain.App.(*app.Echelon).ClaimsKeeper.SetParams(suite.EchelonChain.GetContext(), claimparams)
+	suite.VinceChain.App.(*app.Vince).ClaimsKeeper.SetParams(suite.VinceChain.GetContext(), claimparams)
 
 	params := types.DefaultParams()
 	params.EnableRecovery = true
-	suite.EchelonChain.App.(*app.Echelon).RecoveryKeeper.SetParams(suite.EchelonChain.GetContext(), params)
+	suite.VinceChain.App.(*app.Vince).RecoveryKeeper.SetParams(suite.VinceChain.GetContext(), params)
 
-	suite.pathOsmosisEchelon = ibctesting.NewTransferPath(suite.IBCOsmosisChain, suite.EchelonChain) // clientID, connectionID, channelID empty
-	suite.pathCosmosEchelon = ibctesting.NewTransferPath(suite.IBCCosmosChain, suite.EchelonChain)
+	suite.pathOsmosisVince = ibctesting.NewTransferPath(suite.IBCOsmosisChain, suite.VinceChain) // clientID, connectionID, channelID empty
+	suite.pathCosmosVince = ibctesting.NewTransferPath(suite.IBCCosmosChain, suite.VinceChain)
 	suite.pathOsmosisCosmos = ibctesting.NewTransferPath(suite.IBCCosmosChain, suite.IBCOsmosisChain)
-	suite.coordinator.Setup(suite.pathOsmosisEchelon) // clientID, connectionID, channelID filled
-	suite.coordinator.Setup(suite.pathCosmosEchelon)
+	suite.coordinator.Setup(suite.pathOsmosisVince) // clientID, connectionID, channelID filled
+	suite.coordinator.Setup(suite.pathCosmosVince)
 	suite.coordinator.Setup(suite.pathOsmosisCosmos)
-	suite.Require().Equal("07-tendermint-0", suite.pathOsmosisEchelon.EndpointA.ClientID)
-	suite.Require().Equal("connection-0", suite.pathOsmosisEchelon.EndpointA.ConnectionID)
-	suite.Require().Equal("channel-0", suite.pathOsmosisEchelon.EndpointA.ChannelID)
+	suite.Require().Equal("07-tendermint-0", suite.pathOsmosisVince.EndpointA.ClientID)
+	suite.Require().Equal("connection-0", suite.pathOsmosisVince.EndpointA.ConnectionID)
+	suite.Require().Equal("channel-0", suite.pathOsmosisVince.EndpointA.ChannelID)
 }
 
 var (
@@ -119,11 +119,11 @@ var (
 	}
 	uatomIbcdenom = uatomDenomtrace.IBCDenom()
 
-	aechelonDenomtrace = transfertypes.DenomTrace{
+	avincedenomtrace = transfertypes.DenomTrace{
 		Path:      "transfer/channel-0",
-		BaseDenom: "aechelon",
+		BaseDenom: "avince",
 	}
-	aechelonIbcdenom = aechelonDenomtrace.IBCDenom()
+	avinceIbcdenom = avincedenomtrace.IBCDenom()
 
 	uatomOsmoDenomtrace = transfertypes.DenomTrace{
 		Path:      "transfer/channel-0/transfer/channel-1",

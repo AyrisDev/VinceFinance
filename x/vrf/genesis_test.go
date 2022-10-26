@@ -3,9 +3,9 @@ package vrf_test
 import (
 	"testing"
 
-	keepertest "github.com/echelonfoundation/echelon/v3/testutil/keeper"
-	"github.com/echelonfoundation/echelon/v3/x/vrf"
-	"github.com/echelonfoundation/echelon/v3/x/vrf/types"
+	keepertest "github.com/AyrisDev/VinceFinance/testutil/keeper"
+	"github.com/AyrisDev/VinceFinance/x/vrf"
+	"github.com/AyrisDev/VinceFinance/x/vrf/types"
 	"github.com/stretchr/testify/require"
 )
 

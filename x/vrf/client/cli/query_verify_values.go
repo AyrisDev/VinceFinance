@@ -7,7 +7,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/echelonfoundation/echelon/v3/x/vrf/types"
+	"github.com/AyrisDev/VinceFinance/x/vrf/types"
 )
 
 var _ = strconv.Itoa(0)

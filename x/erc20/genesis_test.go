@@ -16,15 +16,15 @@ import (
 	"github.com/tharsis/ethermint/tests"
 	feemarkettypes "github.com/tharsis/ethermint/x/feemarket/types"
 
-	"github.com/echelonfoundation/echelon/v3/app"
-	"github.com/echelonfoundation/echelon/v3/x/erc20"
-	"github.com/echelonfoundation/echelon/v3/x/erc20/types"
+	"github.com/AyrisDev/VinceFinance/app"
+	"github.com/AyrisDev/VinceFinance/x/erc20"
+	"github.com/AyrisDev/VinceFinance/x/erc20/types"
 )
 
 type GenesisTestSuite struct {
 	suite.Suite
 	ctx     sdk.Context
-	app     *app.Echelon
+	app     *app.Vince
 	genesis types.GenesisState
 }
 
@@ -39,7 +39,7 @@ func (suite *GenesisTestSuite) SetupTest() {
 	suite.app = app.Setup(false, feemarkettypes.DefaultGenesisState())
 	suite.ctx = suite.app.BaseApp.NewContext(false, tmproto.Header{
 		Height:          1,
-		ChainID:         "echelon_3000-3",
+		ChainID:         "vince_5000-1",
 		Time:            time.Now().UTC(),
 		ProposerAddress: consAddress.Bytes(),
 

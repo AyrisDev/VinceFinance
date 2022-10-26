@@ -1,7 +1,7 @@
 package keeper_test
 
 import (
-	"github.com/echelonfoundation/echelon/v3/x/claims/types"
+	"github.com/AyrisDev/VinceFinance/x/claims/types"
 )
 
 func (suite *KeeperTestSuite) TestParams() {

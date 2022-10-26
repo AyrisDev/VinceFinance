@@ -3,9 +3,9 @@ before:
   - go mod download
 
 builds:
-  - id: "echelond-linux-amd64"
-    main: ./cmd/echelond
-    binary: bin/echelond
+  - id: "vinced-linux-amd64"
+    main: ./cmd/vinced
+    binary: bin/vinced
     env:
       - CGO_ENABLED=1
       - CC=gcc
@@ -17,10 +17,10 @@ builds:
     flags:
       - -tags=cgo
     ldflags:
-      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=echelon -X github.com/cosmos/cosmos-sdk/version.AppName=echelond -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
-  - id: "echelond-linux-arm64"
-    main: ./cmd/echelond
-    binary: bin/echelond
+      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=vince -X github.com/cosmos/cosmos-sdk/version.AppName=vinced -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
+  - id: "vinced-linux-arm64"
+    main: ./cmd/vinced
+    binary: bin/vinced
     env:
       - CGO_ENABLED=1
       - CC=aarch64-linux-gnu-gcc
@@ -32,10 +32,10 @@ builds:
     flags:
       - -tags=cgo
     ldflags:
-      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=echelon -X github.com/cosmos/cosmos-sdk/version.AppName=echelond -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
-  # - id: "echelond-linux-riscv64"
-  #   main: ./cmd/echelond
-  #   binary: bin/echelond
+      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=vince -X github.com/cosmos/cosmos-sdk/version.AppName=vinced -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
+  # - id: "vinced-linux-riscv64"
+  #   main: ./cmd/vinced
+  #   binary: bin/vinced
   #   env:
   #     - CGO_ENABLED=1
   #     - CC=riscv64-linux-gnu-gcc
@@ -47,10 +47,10 @@ builds:
   #   flags:
   #     - -tags=cgo
   #   ldflags:
-  #     - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=echelon -X github.com/cosmos/cosmos-sdk/version.AppName=echelond -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
-  - id: "echelond-windows"
-    main: ./cmd/echelond
-    binary: bin/echelond
+  #     - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=vince -X github.com/cosmos/cosmos-sdk/version.AppName=vinced -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
+  - id: "vinced-windows"
+    main: ./cmd/vinced
+    binary: bin/vinced
     env:
       - CGO_ENABLED=1
       - CC=x86_64-w64-mingw32-gcc
@@ -63,10 +63,10 @@ builds:
       - -tags=cgo
       - -buildmode=exe
     ldflags:
-      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=echelon -X github.com/cosmos/cosmos-sdk/version.AppName=echelond -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
-  - id: "echelond-darwin"
-    main: ./cmd/echelond
-    binary: bin/echelond
+      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=vince -X github.com/cosmos/cosmos-sdk/version.AppName=vinced -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
+  - id: "vinced-darwin"
+    main: ./cmd/vinced
+    binary: bin/vinced
     env:
       - CGO_ENABLED=1
       - CC=o64-clang
@@ -78,10 +78,10 @@ builds:
     flags:
         - -tags=cgo
     ldflags:
-      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=echelon -X github.com/cosmos/cosmos-sdk/version.AppName=echelond -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
-  - id: "echelond-darwin-arm64"
-    main: ./cmd/echelond
-    binary: bin/echelond
+      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=vince -X github.com/cosmos/cosmos-sdk/version.AppName=vinced -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
+  - id: "vinced-darwin-arm64"
+    main: ./cmd/vinced
+    binary: bin/vinced
     env:
       - CGO_ENABLED=1
       - CC=oa64-clang
@@ -93,7 +93,7 @@ builds:
     flags:
       - -tags=cgo
     ldflags:
-      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=echelon -X github.com/cosmos/cosmos-sdk/version.AppName=echelond -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
+      - -s -w -X github.com/cosmos/cosmos-sdk/version.Name=vince -X github.com/cosmos/cosmos-sdk/version.AppName=vinced -X github.com/cosmos/cosmos-sdk/version.Version={{.Version}} -X github.com/cosmos/cosmos-sdk/version.Commit={{.Commit}}
 universal_binaries:
   - replace: true
 archives:
@@ -107,12 +107,12 @@ archives:
     - goos: windows
       format: zip
   builds:
-  - echelond-darwin
-  - echelond-darwin-arm64
-  - echelond-windows
-  - echelond-linux-amd64
-  - echelond-linux-arm64
-  # - echelond-linux-riscv64 - Github actions do not support yet, but you can build directly on riscv64 arch by running make install in this directory (Go v1.18+)
+  - vinced-darwin
+  - vinced-darwin-arm64
+  - vinced-windows
+  - vinced-linux-amd64
+  - vinced-linux-arm64
+  # - vinced-linux-riscv64 - Github actions do not support yet, but you can build directly on riscv64 arch by running make install in this directory (Go v1.18+)
   
 checksum:
   name_template: 'checksums.txt'

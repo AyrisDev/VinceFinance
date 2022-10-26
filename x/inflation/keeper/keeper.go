@@ -7,7 +7,7 @@ import (
 
 	"github.com/tendermint/tendermint/libs/log"
 
-	"github.com/echelonfoundation/echelon/v3/x/inflation/types"
+	"github.com/AyrisDev/VinceFinance/x/inflation/types"
 )
 
 // Keeper of the inflation store

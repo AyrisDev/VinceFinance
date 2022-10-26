@@ -1,12 +1,12 @@
 syntax = "proto3";
-package echelon.vrf.v1;
+package vince.vrf.v1;
 
-import "echelon/vrf/v1/randomval.proto";
-import "echelon/vrf/v1/userval.proto";
+import "vince/vrf/v1/randomval.proto";
+import "vince/vrf/v1/userval.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/echelonfoundation/echelon/v3/x/vrf/types";
+option go_package = "github.com/AyrisDev/VinceFinance/x/vrf/types";
 
 // GenesisState defines the vrf module's genesis state.
 message GenesisState {

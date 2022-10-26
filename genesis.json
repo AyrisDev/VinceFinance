@@ -1,6 +1,6 @@
 {
     "genesis_time": "2022-04-13T22:24:29.413509548Z",
-    "chain_id": "echelon_3000-3",
+    "chain_id": "vince_5000-1",
     "initial_height": "1",
     "consensus_params": {
       "block": {
@@ -34,7 +34,7 @@
           {
             "@type": "/ethermint.types.v1.EthAccount",
             "base_account": {
-              "address": "echelon1dnlw5c5eemgxrtw9tkhl7yhmqnc3qzsny906kz",
+              "address": "vince1dnlw5c5eemgxrtw9tkhl7yhmqnc3qzsny906kz",
               "pub_key": null,
               "account_number": "0",
               "sequence": "0"
@@ -53,19 +53,19 @@
         },
         "balances": [
           {
-            "address": "echelon1dnlw5c5eemgxrtw9tkhl7yhmqnc3qzsny906kz",
+            "address": "vince1dnlw5c5eemgxrtw9tkhl7yhmqnc3qzsny906kz",
             "coins": [
               {
-                "denom": "aechelon",
+                "denom": "avince",
                 "amount": "150000000000000000000000000"
               }
             ]
           },
           {
-            "address": "echelon15cvq3ljql6utxseh0zau9m8ve2j8erz8jy7kzu",
+            "address": "vince15cvq3ljql6utxseh0zau9m8ve2j8erz8jy7kzu",
             "coins": [
               {
-                "denom": "aechelon",
+                "denom": "avince",
                 "amount": "1000000"
               }
             ]
@@ -73,7 +73,7 @@
         ],
         "supply": [
           {
-            "denom": "aechelon",
+            "denom": "avince",
             "amount": "150000000000000000001000000"
           }
         ],
@@ -85,7 +85,7 @@
       },
       "crisis": {
         "constant_fee": {
-          "denom": "aechelon",
+          "denom": "avince",
           "amount": "1000"
         }
       },
@@ -143,7 +143,7 @@
       "evm": {
         "accounts": [],
         "params": {
-          "evm_denom": "aechelon",
+          "evm_denom": "avince",
           "enable_create": true,
           "enable_call": true,
           "extra_eips": [],
@@ -200,14 +200,14 @@
                     "max_change_rate": "0.010000000000000000"
                   },
                   "min_self_delegation": "1",
-                  "delegator_address": "echelon1dnlw5c5eemgxrtw9tkhl7yhmqnc3qzsny906kz",
-                  "validator_address": "echelonvaloper1dnlw5c5eemgxrtw9tkhl7yhmqnc3qzsnhtnemj",
+                  "delegator_address": "vince1dnlw5c5eemgxrtw9tkhl7yhmqnc3qzsny906kz",
+                  "validator_address": "vincevaloper1dnlw5c5eemgxrtw9tkhl7yhmqnc3qzsnhtnemj",
                   "pubkey": {
                     "@type": "/cosmos.crypto.ed25519.PubKey",
                     "key": "M4+v74bppkay3B+s+Fxdb6r+Zsv7GD9wozfs9UmGwGI="
                   },
                   "value": {
-                    "denom": "aechelon",
+                    "denom": "avince",
                     "amount": "1000000000000000000000000"
                   }
                 }
@@ -253,7 +253,7 @@
         "deposit_params": {
           "min_deposit": [
             {
-              "denom": "aechelon",
+              "denom": "avince",
               "amount": "10000000"
             }
           ],
@@ -313,7 +313,7 @@
       },
       "inflation": {
         "params": {
-          "mint_denom": "aechelon",
+          "mint_denom": "avince",
           "exponential_calculation": {
             "a": "300000000.000000000000000000",
             "r": "0.500000000000000000",
@@ -357,7 +357,7 @@
           "max_validators": 100,
           "max_entries": 7,
           "historical_entries": 10000,
-          "bond_denom": "aechelon"
+          "bond_denom": "avince"
         },
         "last_total_power": "0",
         "last_validator_powers": [],

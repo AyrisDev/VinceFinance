@@ -1,4 +1,4 @@
-module github.com/echelonfoundation/echelon/v3
+module github.com/AyrisDev/VinceFinance
 
 go 1.18
 

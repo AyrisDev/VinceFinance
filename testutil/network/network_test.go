@@ -14,7 +14,7 @@ import (
 	"github.com/tharsis/ethermint/server/config"
 	"github.com/tharsis/ethermint/testutil/network"
 
-	echelonnetwork "github.com/echelonfoundation/echelon/v3/testutil/network"
+	vincenetwork "github.com/AyrisDev/VinceFinance/testutil/network"
 )
 
 type IntegrationTestSuite struct {
@@ -27,7 +27,7 @@ func (s *IntegrationTestSuite) SetupSuite() {
 	s.T().Log("setting up integration test suite")
 
 	var err error
-	cfg := echelonnetwork.DefaultConfig()
+	cfg := vincenetwork.DefaultConfig()
 	cfg.JSONRPCAddress = config.DefaultJSONRPCAddress
 	cfg.NumValidators = 1
 

@@ -1,5 +1,5 @@
 {
-  "name": "echelon",
+  "name": "vince",
   "version": "1.0.0",
   "description": "<!-- parent:   order: false -->",
   "main": "index.js",
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/echelonfoundation/echelon.git"
+    "url": "git+https://github.com/AyrisDev/VinceFinance.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/echelonfoundation/echelon/issues"
+    "url": "https://github.com/AyrisDev/VinceFinance/issues"
   },
-  "homepage": "https://github.com/echelonfoundation/echelon#readme"
+  "homepage": "https://github.com/AyrisDev/VinceFinance#readme"
 }

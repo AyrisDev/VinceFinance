@@ -1,7 +1,7 @@
 package keeper_test
 
 import (
-	"github.com/echelonfoundation/echelon/v3/x/inflation/types"
+	"github.com/AyrisDev/VinceFinance/x/inflation/types"
 )
 
 func (suite *KeeperTestSuite) TestParams() {

@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"github.com/echelonfoundation/echelon/v3/x/vrf/types"
+	"github.com/AyrisDev/VinceFinance/x/vrf/types"
 )
 
 type msgServer struct {

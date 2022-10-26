@@ -17,9 +17,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/echelonfoundation/echelon/v3/app"
-	claimstypes "github.com/echelonfoundation/echelon/v3/x/claims/types"
-	"github.com/echelonfoundation/echelon/v3/x/recovery/types"
+	"github.com/AyrisDev/VinceFinance/app"
+	claimstypes "github.com/AyrisDev/VinceFinance/x/claims/types"
+	"github.com/AyrisDev/VinceFinance/x/recovery/types"
 )
 
 var (
@@ -33,7 +33,7 @@ type KeeperTestSuite struct {
 
 	ctx sdk.Context
 
-	app         *app.Echelon
+	app         *app.Vince
 	queryClient types.QueryClient
 }
 
@@ -44,7 +44,7 @@ func (suite *KeeperTestSuite) SetupTest() {
 	suite.app = app.Setup(false, feemarkettypes.DefaultGenesisState())
 	suite.ctx = suite.app.BaseApp.NewContext(false, tmproto.Header{
 		Height:          1,
-		ChainID:         "echelon_3000-3",
+		ChainID:         "vince_5000-1",
 		Time:            time.Now().UTC(),
 		ProposerAddress: consAddress.Bytes(),
 

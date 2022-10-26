@@ -39,9 +39,9 @@ func CalculateEpochMintProvision(
 	// epochProvision = periodProvision / epochsPerPeriod
 	epochProvision := periodProvision.Quo(sdk.NewDec(epochsPerPeriod))
 
-	// Multiply epochMintProvision with power reduction (10^18 for echelon) as the
-	// calculation is based on `echelon` and the issued tokens need to be given in
-	// `aechelon`
+	// Multiply epochMintProvision with power reduction (10^18 for vince) as the
+	// calculation is based on `vince` and the issued tokens need to be given in
+	// `avince`
 	epochProvision = epochProvision.Mul(ethermint.PowerReduction.ToDec())
 	return epochProvision
 }

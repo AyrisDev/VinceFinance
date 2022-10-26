@@ -107,37 +107,32 @@ import (
 	feemarketkeeper "github.com/tharsis/ethermint/x/feemarket/keeper"
 	feemarkettypes "github.com/tharsis/ethermint/x/feemarket/types"
 
-	"github.com/echelonfoundation/echelon/v3/app/ante"
-	// v2 "github.com/echelonfoundation/echelon/v3/app/upgrades/v2"
-	// storetypes "github.com/cosmos/cosmos-sdk/store/types"
+	"github.com/AyrisDev/VinceFinance/app/ante"
 
-	// "github.com/echelonfoundation/echelon/v3/x/claims"
-	// claimskeeper "github.com/echelonfoundation/echelon/v3/x/claims/keeper"
-	// claimstypes "github.com/echelonfoundation/echelon/v3/x/claims/types"
-	"github.com/echelonfoundation/echelon/v3/x/epochs"
-	epochskeeper "github.com/echelonfoundation/echelon/v3/x/epochs/keeper"
-	epochstypes "github.com/echelonfoundation/echelon/v3/x/epochs/types"
-	"github.com/echelonfoundation/echelon/v3/x/erc20"
-	erc20client "github.com/echelonfoundation/echelon/v3/x/erc20/client"
-	erc20keeper "github.com/echelonfoundation/echelon/v3/x/erc20/keeper"
-	erc20types "github.com/echelonfoundation/echelon/v3/x/erc20/types"
-	"github.com/echelonfoundation/echelon/v3/x/incentives"
-	incentivesclient "github.com/echelonfoundation/echelon/v3/x/incentives/client"
-	incentiveskeeper "github.com/echelonfoundation/echelon/v3/x/incentives/keeper"
-	incentivestypes "github.com/echelonfoundation/echelon/v3/x/incentives/types"
-	"github.com/echelonfoundation/echelon/v3/x/inflation"
-	inflationkeeper "github.com/echelonfoundation/echelon/v3/x/inflation/keeper"
-	inflationtypes "github.com/echelonfoundation/echelon/v3/x/inflation/types"
-	"github.com/echelonfoundation/echelon/v3/x/recovery"
-	recoverykeeper "github.com/echelonfoundation/echelon/v3/x/recovery/keeper"
-	recoverytypes "github.com/echelonfoundation/echelon/v3/x/recovery/types"
-	"github.com/echelonfoundation/echelon/v3/x/vesting"
-	vestingkeeper "github.com/echelonfoundation/echelon/v3/x/vesting/keeper"
-	vestingtypes "github.com/echelonfoundation/echelon/v3/x/vesting/types"
+	"github.com/AyrisDev/VinceFinance/x/epochs"
+	epochskeeper "github.com/AyrisDev/VinceFinance/x/epochs/keeper"
+	epochstypes "github.com/AyrisDev/VinceFinance/x/epochs/types"
+	"github.com/AyrisDev/VinceFinance/x/erc20"
+	erc20client "github.com/AyrisDev/VinceFinance/x/erc20/client"
+	erc20keeper "github.com/AyrisDev/VinceFinance/x/erc20/keeper"
+	erc20types "github.com/AyrisDev/VinceFinance/x/erc20/types"
+	"github.com/AyrisDev/VinceFinance/x/incentives"
+	incentivesclient "github.com/AyrisDev/VinceFinance/x/incentives/client"
+	incentiveskeeper "github.com/AyrisDev/VinceFinance/x/incentives/keeper"
+	incentivestypes "github.com/AyrisDev/VinceFinance/x/incentives/types"
+	"github.com/AyrisDev/VinceFinance/x/inflation"
+	inflationkeeper "github.com/AyrisDev/VinceFinance/x/inflation/keeper"
+	inflationtypes "github.com/AyrisDev/VinceFinance/x/inflation/types"
+	"github.com/AyrisDev/VinceFinance/x/recovery"
+	recoverykeeper "github.com/AyrisDev/VinceFinance/x/recovery/keeper"
+	recoverytypes "github.com/AyrisDev/VinceFinance/x/recovery/types"
+	"github.com/AyrisDev/VinceFinance/x/vesting"
+	vestingkeeper "github.com/AyrisDev/VinceFinance/x/vesting/keeper"
+	vestingtypes "github.com/AyrisDev/VinceFinance/x/vesting/types"
 
-	// vrfmod "github.com/echelonfoundation/echelon/v3/x/vrf"
-	// vrfmodkeeper "github.com/echelonfoundation/echelon/v3/x/vrf/keeper"
-	// vrfmodtypes "github.com/echelonfoundation/echelon/v3/x/vrf/types"
+	// vrfmod "github.com/AyrisDev/VinceFinance/x/vrf"
+	// vrfmodkeeper "github.com/AyrisDev/VinceFinance/x/vrf/keeper"
+	// vrfmodtypes "github.com/AyrisDev/VinceFinance/x/vrf/types"
 )
 
 func init() {
@@ -146,15 +141,15 @@ func init() {
 		panic(err)
 	}
 
-	DefaultNodeHome = filepath.Join(userHomeDir, ".echelond")
+	DefaultNodeHome = filepath.Join(userHomeDir, ".vinced")
 
-	// manually update the power reduction by replacing micro (u) -> atto (a) echelon
+	// manually update the power reduction by replacing micro (u) -> atto (a) Vince
 	sdk.DefaultPowerReduction = ethermint.PowerReduction
 }
 
 const (
 	// Name defines the application binary name
-	Name = "echelond"
+	Name = "vinced"
 )
 
 var (
@@ -174,7 +169,7 @@ var (
 		gov.NewAppModuleBasic(
 			paramsclient.ProposalHandler, distrclient.ProposalHandler, upgradeclient.ProposalHandler, upgradeclient.CancelProposalHandler,
 			ibcclientclient.UpdateClientProposalHandler, ibcclientclient.UpgradeProposalHandler,
-			// Echelon proposal types
+			// Vince proposal types
 			erc20client.RegisterCoinProposalHandler, erc20client.RegisterERC20ProposalHandler,
 			erc20client.ToggleTokenRelayProposalHandler, erc20client.UpdateTokenPairERC20ProposalHandler,
 			incentivesclient.RegisterIncentiveProposalHandler, incentivesclient.CancelIncentiveProposalHandler,
@@ -223,15 +218,15 @@ var (
 )
 
 var (
-	_ servertypes.Application = (*Echelon)(nil)
-	_ simapp.App              = (*Echelon)(nil)
-	_ ibctesting.TestingApp   = (*Echelon)(nil)
+	_ servertypes.Application = (*Vince)(nil)
+	_ simapp.App              = (*Vince)(nil)
+	_ ibctesting.TestingApp   = (*Vince)(nil)
 )
 
-// Echelon implements an extended ABCI application. It is an application
+// Vince implements an extended ABCI application. It is an application
 // that may process transactions through Ethereum's EVM running atop of
 // Tendermint consensus.
-type Echelon struct {
+type Vince struct {
 	*baseapp.BaseApp
 
 	// encoding
@@ -271,7 +266,7 @@ type Echelon struct {
 	EvmKeeper       *evmkeeper.Keeper
 	FeeMarketKeeper feemarketkeeper.Keeper
 
-	// Echelon keepers
+	// Vince keepers
 	InflationKeeper  inflationkeeper.Keeper
 	// ClaimsKeeper     *claimskeeper.Keeper
 	Erc20Keeper      erc20keeper.Keeper
@@ -296,8 +291,8 @@ type Echelon struct {
 	tpsCounter *tpsCounter
 }
 
-// NewEchelon returns a reference to a new initialized Ethermint application.
-func NewEchelon(
+// Vince returns a reference to a new initialized Ethermint application.
+func NewVince(
 	logger log.Logger,
 	db dbm.DB,
 	traceStore io.Writer,
@@ -308,7 +303,7 @@ func NewEchelon(
 	encodingConfig simappparams.EncodingConfig,
 	appOpts servertypes.AppOptions,
 	baseAppOptions ...func(*baseapp.BaseApp),
-) *Echelon {
+) *Vince {
 	appCodec := encodingConfig.Marshaler
 	cdc := encodingConfig.Amino
 	interfaceRegistry := encodingConfig.InterfaceRegistry
@@ -336,7 +331,7 @@ func NewEchelon(
 		ibchost.StoreKey, ibctransfertypes.StoreKey,
 		// ethermint keys
 		evmtypes.StoreKey, feemarkettypes.StoreKey,
-		// echelon keys
+		// Vince keys
 		inflationtypes.StoreKey, erc20types.StoreKey, incentivestypes.StoreKey,
 		epochstypes.StoreKey, vestingtypes.StoreKey,
 		// vrfmodtypes.StoreKey,
@@ -346,7 +341,7 @@ func NewEchelon(
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey, evmtypes.TransientKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
 
-	app := &Echelon{
+	app := &Vince{
 		BaseApp:           bApp,
 		cdc:               cdc,
 		appCodec:          appCodec,
@@ -432,7 +427,7 @@ func NewEchelon(
 		app.AccountKeeper, app.BankKeeper, &stakingKeeper, govRouter,
 	)
 
-	// Echelon Keeper
+	// Vince Keeper
 	app.InflationKeeper = inflationkeeper.NewKeeper(
 		keys[inflationtypes.StoreKey], appCodec, app.GetSubspace(inflationtypes.ModuleName),
 		app.AccountKeeper, app.BankKeeper, app.DistrKeeper, &stakingKeeper,
@@ -591,7 +586,7 @@ func NewEchelon(
 		// Ethermint app modules
 		evm.NewAppModule(app.EvmKeeper, app.AccountKeeper),
 		feemarket.NewAppModule(app.FeeMarketKeeper),
-		// Echelon app modules
+		// Vince app modules
 		inflation.NewAppModule(app.InflationKeeper, app.AccountKeeper, app.StakingKeeper),
 		erc20.NewAppModule(app.Erc20Keeper, app.AccountKeeper),
 		incentives.NewAppModule(app.IncentivesKeeper, app.AccountKeeper),
@@ -663,7 +658,7 @@ func NewEchelon(
 		feegrant.ModuleName,
 		paramstypes.ModuleName,
 		upgradetypes.ModuleName,
-		// Echelon modules
+		// Vince modules
 		vestingtypes.ModuleName,
 		inflationtypes.ModuleName,
 		erc20types.ModuleName,
@@ -698,7 +693,7 @@ func NewEchelon(
 		upgradetypes.ModuleName,
 		// Ethermint modules
 		evmtypes.ModuleName, feemarkettypes.ModuleName,
-		// Echelon modules
+		// Vince modules
 		vestingtypes.ModuleName,
 		inflationtypes.ModuleName,
 		erc20types.ModuleName,
@@ -798,21 +793,21 @@ func NewEchelon(
 }
 
 // Name returns the name of the App
-func (app *Echelon) Name() string { return app.BaseApp.Name() }
+func (app *Vince) Name() string { return app.BaseApp.Name() }
 
 // BeginBlocker updates every begin block
-func (app *Echelon) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
+func (app *Vince) BeginBlocker(ctx sdk.Context, req abci.RequestBeginBlock) abci.ResponseBeginBlock {
 	BeginBlockForks(ctx, app)
 	return app.mm.BeginBlock(ctx, req)
 }
 
 // EndBlocker updates every end block
-func (app *Echelon) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
+func (app *Vince) EndBlocker(ctx sdk.Context, req abci.RequestEndBlock) abci.ResponseEndBlock {
 	return app.mm.EndBlock(ctx, req)
 }
 
 // We are intentionally decomposing the DeliverTx method so as to calculate the transactions per second.
-func (app *Echelon) DeliverTx(req abci.RequestDeliverTx) (res abci.ResponseDeliverTx) {
+func (app *Vince) DeliverTx(req abci.RequestDeliverTx) (res abci.ResponseDeliverTx) {
 	defer func() {
 		// TODO: Record the count along with the code and or reason so as to display
 		// in the transactions per second live dashboards.
@@ -827,7 +822,7 @@ func (app *Echelon) DeliverTx(req abci.RequestDeliverTx) (res abci.ResponseDeliv
 }
 
 // InitChainer updates at chain initialization
-func (app *Echelon) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
+func (app *Vince) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci.ResponseInitChain {
 	var genesisState simapp.GenesisState
 	if err := json.Unmarshal(req.AppStateBytes, &genesisState); err != nil {
 		panic(err)
@@ -837,12 +832,12 @@ func (app *Echelon) InitChainer(ctx sdk.Context, req abci.RequestInitChain) abci
 }
 
 // LoadHeight loads state at a particular height
-func (app *Echelon) LoadHeight(height int64) error {
+func (app *Vince) LoadHeight(height int64) error {
 	return app.LoadVersion(height)
 }
 
 // ModuleAccountAddrs returns all the app's module account addresses.
-func (app *Echelon) ModuleAccountAddrs() map[string]bool {
+func (app *Vince) ModuleAccountAddrs() map[string]bool {
 	modAccAddrs := make(map[string]bool)
 	for acc := range maccPerms {
 		modAccAddrs[authtypes.NewModuleAddress(acc).String()] = true
@@ -853,7 +848,7 @@ func (app *Echelon) ModuleAccountAddrs() map[string]bool {
 
 // BlockedAddrs returns all the app's module account addresses that are not
 // allowed to receive external tokens.
-func (app *Echelon) BlockedAddrs() map[string]bool {
+func (app *Vince) BlockedAddrs() map[string]bool {
 	blockedAddrs := make(map[string]bool)
 	for acc := range maccPerms {
 		blockedAddrs[authtypes.NewModuleAddress(acc).String()] = !allowedReceivingModAcc[acc]
@@ -862,64 +857,64 @@ func (app *Echelon) BlockedAddrs() map[string]bool {
 	return blockedAddrs
 }
 
-// LegacyAmino returns Echelon's amino codec.
+// LegacyAmino returns Vince's amino codec.
 //
 // NOTE: This is solely to be used for testing purposes as it may be desirable
 // for modules to register their own custom testing types.
-func (app *Echelon) LegacyAmino() *codec.LegacyAmino {
+func (app *Vince) LegacyAmino() *codec.LegacyAmino {
 	return app.cdc
 }
 
-// AppCodec returns Echelon's app codec.
+// AppCodec returns Vince's app codec.
 //
 // NOTE: This is solely to be used for testing purposes as it may be desirable
 // for modules to register their own custom testing types.
-func (app *Echelon) AppCodec() codec.Codec {
+func (app *Vince) AppCodec() codec.Codec {
 	return app.appCodec
 }
 
-// InterfaceRegistry returns Echelon's InterfaceRegistry
-func (app *Echelon) InterfaceRegistry() types.InterfaceRegistry {
+// InterfaceRegistry returns Vince's InterfaceRegistry
+func (app *Vince) InterfaceRegistry() types.InterfaceRegistry {
 	return app.interfaceRegistry
 }
 
 // GetKey returns the KVStoreKey for the provided store key.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *Echelon) GetKey(storeKey string) *sdk.KVStoreKey {
+func (app *Vince) GetKey(storeKey string) *sdk.KVStoreKey {
 	return app.keys[storeKey]
 }
 
 // GetTKey returns the TransientStoreKey for the provided store key.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *Echelon) GetTKey(storeKey string) *sdk.TransientStoreKey {
+func (app *Vince) GetTKey(storeKey string) *sdk.TransientStoreKey {
 	return app.tkeys[storeKey]
 }
 
 // GetMemKey returns the MemStoreKey for the provided mem key.
 //
 // NOTE: This is solely used for testing purposes.
-func (app *Echelon) GetMemKey(storeKey string) *sdk.MemoryStoreKey {
+func (app *Vince) GetMemKey(storeKey string) *sdk.MemoryStoreKey {
 	return app.memKeys[storeKey]
 }
 
 // GetSubspace returns a param subspace for a given module name.
 //
 // NOTE: This is solely to be used for testing purposes.
-func (app *Echelon) GetSubspace(moduleName string) paramstypes.Subspace {
+func (app *Vince) GetSubspace(moduleName string) paramstypes.Subspace {
 	subspace, _ := app.ParamsKeeper.GetSubspace(moduleName)
 	return subspace
 }
 
 // SimulationManager implements the SimulationApp interface
-func (app *Echelon) SimulationManager() *module.SimulationManager {
+func (app *Vince) SimulationManager() *module.SimulationManager {
 	return app.sm
 }
 
 // RegisterAPIRoutes registers all application module routes with the provided
 // API server.
-func (app *Echelon) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig) {
+func (app *Vince) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APIConfig) {
 	clientCtx := apiSvr.ClientCtx
 	rpc.RegisterRoutes(clientCtx, apiSvr.Router)
 
@@ -940,38 +935,38 @@ func (app *Echelon) RegisterAPIRoutes(apiSvr *api.Server, apiConfig config.APICo
 	}
 }
 
-func (app *Echelon) RegisterTxService(clientCtx client.Context) {
+func (app *Vince) RegisterTxService(clientCtx client.Context) {
 	authtx.RegisterTxService(app.BaseApp.GRPCQueryRouter(), clientCtx, app.BaseApp.Simulate, app.interfaceRegistry)
 }
 
-func (app *Echelon) RegisterTendermintService(clientCtx client.Context) {
+func (app *Vince) RegisterTendermintService(clientCtx client.Context) {
 	tmservice.RegisterTendermintService(app.BaseApp.GRPCQueryRouter(), clientCtx, app.interfaceRegistry)
 }
 
 // IBC Go TestingApp functions
 
 // GetBaseApp implements the TestingApp interface.
-func (app *Echelon) GetBaseApp() *baseapp.BaseApp {
+func (app *Vince) GetBaseApp() *baseapp.BaseApp {
 	return app.BaseApp
 }
 
 // GetStakingKeeper implements the TestingApp interface.
-func (app *Echelon) GetStakingKeeper() stakingkeeper.Keeper {
+func (app *Vince) GetStakingKeeper() stakingkeeper.Keeper {
 	return app.StakingKeeper
 }
 
 // GetIBCKeeper implements the TestingApp interface.
-func (app *Echelon) GetIBCKeeper() *ibckeeper.Keeper {
+func (app *Vince) GetIBCKeeper() *ibckeeper.Keeper {
 	return app.IBCKeeper
 }
 
 // GetScopedIBCKeeper implements the TestingApp interface.
-func (app *Echelon) GetScopedIBCKeeper() capabilitykeeper.ScopedKeeper {
+func (app *Vince) GetScopedIBCKeeper() capabilitykeeper.ScopedKeeper {
 	return app.ScopedIBCKeeper
 }
 
 // GetTxConfig implements the TestingApp interface.
-func (app *Echelon) GetTxConfig() client.TxConfig {
+func (app *Vince) GetTxConfig() client.TxConfig {
 	cfg := encoding.MakeConfig(ModuleBasics)
 	return cfg.TxConfig
 }
@@ -1016,7 +1011,7 @@ func initParamsKeeper(
 	// ethermint subspaces
 	paramsKeeper.Subspace(evmtypes.ModuleName)
 	paramsKeeper.Subspace(feemarkettypes.ModuleName)
-	// echelon subspaces
+	// Vince subspaces
 	paramsKeeper.Subspace(inflationtypes.ModuleName)
 	paramsKeeper.Subspace(erc20types.ModuleName)
 	// paramsKeeper.Subspace(claimstypes.ModuleName)
@@ -1026,7 +1021,7 @@ func initParamsKeeper(
 	return paramsKeeper
 }
 
-func (app *Echelon) setupUpgradeHandlers() {
+func (app *Vince) setupUpgradeHandlers() {
 	// v2 handler
 	// app.UpgradeKeeper.SetUpgradeHandler(
 	// 	v2.UpgradeName,

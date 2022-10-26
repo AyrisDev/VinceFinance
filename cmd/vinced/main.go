@@ -7,8 +7,8 @@ import (
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/echelonfoundation/echelon/v3/app"
-	cmdcfg "github.com/echelonfoundation/echelon/v3/cmd/config"
+	"github.com/AyrisDev/VinceFinance/app"
+	cmdcfg "github.com/AyrisDev/VinceFinance/cmd/config"
 )
 
 func main() {

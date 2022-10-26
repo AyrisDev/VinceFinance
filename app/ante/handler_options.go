@@ -14,10 +14,10 @@ import (
 	ethante "github.com/tharsis/ethermint/app/ante"
 	evmtypes "github.com/tharsis/ethermint/x/evm/types"
 
-	vestingtypes "github.com/echelonfoundation/echelon/v3/x/vesting/types"
+	vestingtypes "github.com/AyrisDev/VinceFinance/x/vesting/types"
 )
 
-// HandlerOptions defines the list of module keepers required to run the Echelon
+// HandlerOptions defines the list of module keepers required to run the Vince
 // AnteHandler decorators.
 type HandlerOptions struct {
 	AccountKeeper   evmtypes.AccountKeeper

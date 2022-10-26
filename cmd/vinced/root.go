@@ -39,16 +39,16 @@ import (
 	servercfg "github.com/tharsis/ethermint/server/config"
 	srvflags "github.com/tharsis/ethermint/server/flags"
 
-	"github.com/echelonfoundation/echelon/v3/app"
-	cmdcfg "github.com/echelonfoundation/echelon/v3/cmd/config"
-	echelonkr "github.com/echelonfoundation/echelon/v3/crypto/keyring"
+	"github.com/AyrisDev/VinceFinance/app"
+	cmdcfg "github.com/AyrisDev/VinceFinance/cmd/config"
+	vincekr "github.com/AyrisDev/VinceFinance/crypto/keyring"
 )
 
 const (
-	EnvPrefix = "ECHELOND"
+	EnvPrefix = "vinced"
 )
 
-// NewRootCmd creates a new root command for echelond. It is called once in the
+// NewRootCmd creates a new root command for vinced. It is called once in the
 // main function.
 func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 	encodingConfig := encoding.MakeConfig(app.ModuleBasics)
@@ -61,12 +61,12 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 		WithAccountRetriever(types.AccountRetriever{}).
 		WithBroadcastMode(flags.BroadcastBlock).
 		WithHomeDir(app.DefaultNodeHome).
-		WithKeyringOptions(echelonkr.Option()).
+		WithKeyringOptions(vincekr.Option()).
 		WithViper(EnvPrefix)
 
 	rootCmd := &cobra.Command{
 		Use:   app.Name,
-		Short: "Echelon Daemon",
+		Short: "Vince Daemon",
 		PersistentPreRunE: func(cmd *cobra.Command, _ []string) error {
 			// set the default command outputs
 			cmd.SetOut(cmd.OutOrStdout())
@@ -218,7 +218,7 @@ func initAppConfig(chainID string) (string, interface{}) {
 
 	srvCfg.EVM.MaxTxGasWanted = 53948 // Lower allows more transaction throughput
 
-	srvCfg.MinGasPrices = "0.0025aechelon"
+	srvCfg.MinGasPrices = "0.0025avince"
 
 	srvCfg.StateSync.SnapshotInterval = 0 // Only 1500 for non-validators
 	srvCfg.StateSync.SnapshotKeepRecent = 2
@@ -258,7 +258,7 @@ func (a appCreator) newApp(logger log.Logger, db dbm.DB, traceStore io.Writer, a
 		panic(err)
 	}
 
-	echelonApp := app.NewEchelon(
+	vinceApp := app.NewVince(
 		logger, db, traceStore, true, skipUpgradeHeights,
 		cast.ToString(appOpts.Get(flags.FlagHome)),
 		cast.ToUint(appOpts.Get(sdkserver.FlagInvCheckPeriod)),
@@ -277,7 +277,7 @@ func (a appCreator) newApp(logger log.Logger, db dbm.DB, traceStore io.Writer, a
 		baseapp.SetSnapshotKeepRecent(cast.ToUint32(appOpts.Get(sdkserver.FlagStateSyncSnapshotKeepRecent))),
 	)
 
-	return echelonApp
+	return vinceApp
 }
 
 // appExport creates a new simapp (optionally at a given height)
@@ -286,21 +286,21 @@ func (a appCreator) appExport(
 	logger log.Logger, db dbm.DB, traceStore io.Writer, height int64, forZeroHeight bool, jailAllowedAddrs []string,
 	appOpts servertypes.AppOptions,
 ) (servertypes.ExportedApp, error) {
-	var echelonApp *app.Echelon
+	var vinceApp *app.Vince
 	homePath, ok := appOpts.Get(flags.FlagHome).(string)
 	if !ok || homePath == "" {
 		return servertypes.ExportedApp{}, errors.New("application home not set")
 	}
 
 	if height != -1 {
-		echelonApp = app.NewEchelon(logger, db, traceStore, false, map[int64]bool{}, "", uint(1), a.encCfg, appOpts)
+		vinceApp = app.NewVince(logger, db, traceStore, false, map[int64]bool{}, "", uint(1), a.encCfg, appOpts)
 
-		if err := echelonApp.LoadHeight(height); err != nil {
+		if err := vinceApp.LoadHeight(height); err != nil {
 			return servertypes.ExportedApp{}, err
 		}
 	} else {
-		echelonApp = app.NewEchelon(logger, db, traceStore, true, map[int64]bool{}, "", uint(1), a.encCfg, appOpts)
+		vinceApp = app.NewVince(logger, db, traceStore, true, map[int64]bool{}, "", uint(1), a.encCfg, appOpts)
 	}
 
-	return echelonApp.ExportAppStateAndValidators(forZeroHeight, jailAllowedAddrs)
+	return vinceApp.ExportAppStateAndValidators(forZeroHeight, jailAllowedAddrs)
 }

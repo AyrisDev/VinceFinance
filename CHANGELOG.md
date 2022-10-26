@@ -34,17 +34,17 @@ Ref: https://keepachangelog.com/en/1.0.0/
 -->
 
 # Changelog
-Echelon v1.2.0 - WIP
+vince v1.2.0 - WIP
 
 
-Echelon v1.1.5
+vince v1.1.5
 
 - Updated protobuf building
 - Added x/vrf API and gRPC endpoints
 - Preparation update for v2.0.0
 - Code cleanup
 
-Echelon v1.1.4
+vince v1.1.4
 
 - Upgraded Cosmos SDK to latest v0.45.6 *See Cosmos-SDK changelog for breaking changes*
 - Upgraded Ethermint v0.14.1

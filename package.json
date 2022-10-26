@@ -1,7 +1,7 @@
 {
-  "name": "echelon",
+  "name": "vince",
   "version": "1.1.6",
-  "description": "Echelon, the Cosmos/EVM Hybrid Blockchain",
+  "description": "vince, the Cosmos/EVM Hybrid Blockchain",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -15,12 +15,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/echelonfoundation/echelon.git"
+    "url": "git+https://github.com/AyrisDev/VinceFinance.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/echelonfoundation/echelon/issues"
+    "url": "https://github.com/AyrisDev/VinceFinance/issues"
   },
-  "homepage": "https://github.com/echelonfoundation/echelon#readme"
+  "homepage": "https://github.com/AyrisDev/VinceFinance#readme"
 }

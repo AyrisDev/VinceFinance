@@ -10,8 +10,8 @@ import (
 
 	"github.com/tharsis/ethermint/tests"
 
-	"github.com/echelonfoundation/echelon/v3/x/erc20/types"
-	inflationtypes "github.com/echelonfoundation/echelon/v3/x/inflation/types"
+	"github.com/AyrisDev/VinceFinance/x/erc20/types"
+	inflationtypes "github.com/AyrisDev/VinceFinance/x/inflation/types"
 )
 
 const (
@@ -170,27 +170,27 @@ func (suite KeeperTestSuite) TestRegisterCoin() {
 			false,
 		},
 		{
-			"evm denom registration - echelon",
+			"evm denom registration - vince",
 			func() {
-				metadata.Base = "echelon"
+				metadata.Base = "vince"
 				err := suite.app.BankKeeper.MintCoins(suite.ctx, inflationtypes.ModuleName, sdk.Coins{sdk.NewInt64Coin(metadata.Base, 1)})
 				suite.Require().NoError(err)
 			},
 			false,
 		},
 		{
-			"evm denom registration - aechelon",
+			"evm denom registration - avince",
 			func() {
-				metadata.Base = "aechelon"
+				metadata.Base = "avince"
 				err := suite.app.BankKeeper.MintCoins(suite.ctx, inflationtypes.ModuleName, sdk.Coins{sdk.NewInt64Coin(metadata.Base, 1)})
 				suite.Require().NoError(err)
 			},
 			false,
 		},
 		{
-			"evm denom registration - wechelon",
+			"evm denom registration - wvince",
 			func() {
-				metadata.Base = "wechelon"
+				metadata.Base = "wvince"
 				err := suite.app.BankKeeper.MintCoins(suite.ctx, inflationtypes.ModuleName, sdk.Coins{sdk.NewInt64Coin(metadata.Base, 1)})
 				suite.Require().NoError(err)
 			},

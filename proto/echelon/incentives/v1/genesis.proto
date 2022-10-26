@@ -1,10 +1,10 @@
 syntax = "proto3";
-package echelon.incentives.v1;
-import "echelon/incentives/v1/incentives.proto";
+package vince.incentives.v1;
+import "vince/incentives/v1/incentives.proto";
 
 import "gogoproto/gogo.proto";
 
-option go_package = "github.com/echelonfoundation/echelon/v3/x/incentives/types";
+option go_package = "github.com/AyrisDev/VinceFinance/x/incentives/types";
 
 // GenesisState defines the module's genesis state.
 message GenesisState {
