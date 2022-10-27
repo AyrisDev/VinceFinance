@@ -14,7 +14,7 @@ func BeginBlockForks(ctx sdk.Context, app *Vince) {
 	switch ctx.BlockHeight() {
 	case v2.UpgradeHeight:
 		// NOTE: only run for mainnet
-		if !strings.HasPrefix(ctx.ChainID(), "vince_5001-") {
+		if !strings.HasPrefix(ctx.ChainID(), "vince_5000-") {
 			return
 		}
 

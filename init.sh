@@ -1,5 +1,5 @@
 KEY="yourkey"
-CHAINID="vince_5001-1"
+CHAINID="vince_5000-1"
 MONIKER="Yournodename"
 KEYRING="file"
 KEYPASSWD="password"
