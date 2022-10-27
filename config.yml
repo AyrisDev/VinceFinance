@@ -19,6 +19,13 @@ faucet:
   coins:
   - 10avince
   host: 0.0.0.0:4500
+host:
+  rpc: ":26659"
+  p2p: ":26658"
+  prof: ":6061"
+  grpc: ":9092"
+  grpc-web: ":9093"
+  api: ":1318"
 genesis:
   app_state:
     crisis:
@@ -38,7 +45,7 @@ genesis:
     staking:
       params:
         bond_denom: avince
-  chain_id: vince-2000
+  chain_id: vincetest
 validators:
 - name: alice
   bonded: 100000000000000000000avince
