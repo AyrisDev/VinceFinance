@@ -1,3 +1,4 @@
+version: 1
 accounts:
   - name: alice
     coins: ["100000000uatom", "100000000000000000000avince"]
