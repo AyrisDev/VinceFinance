@@ -45,7 +45,7 @@ genesis:
     staking:
       params:
         bond_denom: avince
- 
+  chain_id: vince_5000-1
 validators:
 - name: alice
   bonded: 100000000000000000000avince
