@@ -76,7 +76,7 @@
       },
       "crisis": {
         "constant_fee": {
-          "denom": "stake",
+          "denom": "avince",
           "amount": "1000"
         }
       },
@@ -134,7 +134,7 @@
       "evm": {
         "accounts": [],
         "params": {
-          "evm_denom": "aphoton",
+          "evm_denom": "avince",
           "enable_create": true,
           "enable_call": true,
           "extra_eips": [],
@@ -304,7 +304,7 @@
       },
       "inflation": {
         "params": {
-          "mint_denom": "aphoton",
+          "mint_denom": "avince",
           "exponential_calculation": {
             "a": "300000000.000000000000000000",
             "r": "0.500000000000000000",
