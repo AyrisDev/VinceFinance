@@ -198,29 +198,31 @@ $(STATIK):
 contract-tools:
 ifeq (, $(shell which stringer))
 	@echo "Installing stringer..."
-	@go get golang.org/x/tools/cmd/stringer
+	@go get golang.org/x/tools/cmd/stringer@latest
 else
 	@echo "stringer already installed; skipping..."
 endif
 
 ifeq (, $(shell which go-bindata))
 	@echo "Installing go-bindata..."
-	@go get github.com/kevinburke/go-bindata/go-bindata
+	@go get github.com/kevinburke/go-bindata/go-bindata@latest
 else
 	@echo "go-bindata already installed; skipping..."
 endif
 
 ifeq (, $(shell which gencodec))
 	@echo "Installing gencodec..."
-	@go get github.com/fjl/gencodec
+	@go get github.com/fjl/gencodec@latest
 else
 	@echo "gencodec already installed; skipping..."
 endif
 
 ifeq (, $(shell which protoc-gen-go))
 	@echo "Installing protoc-gen-go..."
-	@go get github.com/fjl/gencodec github.com/golang/protobuf/protoc-gen-go
+	@go get github.com/fjl/gencodec github.com/golang/protobuf/protoc-gen-go@latest
+	@go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 else
+	
 	@echo "protoc-gen-go already installed; skipping..."
 endif
 
@@ -418,7 +420,7 @@ benchmark:
 
 lint:
 	golangci-lint run --out-format=tab
-
+	solhint contracts/**/*.sol
 lint-contracts:
 	@cd contracts && \
 	npm i && \
@@ -444,7 +446,7 @@ format:
 ###                                Protobuf                                 ###
 ###############################################################################
 
-containerProtoVer=v0.2
+containerProtoVer=v0.7
 containerProtoImage=tendermintdev/sdk-proto-gen:$(containerProtoVer)
 containerProtoGen=cosmos-sdk-proto-gen-$(containerProtoVer)
 containerProtoGenSwagger=cosmos-sdk-proto-gen-swagger-$(containerProtoVer)
@@ -467,11 +469,11 @@ proto-check-breaking:
 	@$(DOCKER_BUF) breaking --against $(HTTPS_GIT)#branch=main
 
 
-TM_URL              = https://raw.githubusercontent.com/tendermint/tendermint/v0.34.15/proto/tendermint
+TM_URL              = https://raw.githubusercontent.com/tendermint/tendermint/v0.34.22/proto/tendermint
 GOGO_PROTO_URL      = https://raw.githubusercontent.com/regen-network/protobuf/cosmos
-COSMOS_SDK_URL      = https://raw.githubusercontent.com/cosmos/cosmos-sdk/v0.45.1
+COSMOS_SDK_URL      = https://raw.githubusercontent.com/cosmos/cosmos-sdk/v0.46.0
 ETHERMINT_URL      	= https://raw.githubusercontent.com/tharsis/ethermint/v0.10.0
-IBC_GO_URL      		= https://raw.githubusercontent.com/cosmos/ibc-go/v3.0.0-rc0
+IBC_GO_URL      		= https://raw.githubusercontent.com/cosmos/ibc-go/v5.0.0-beta1
 COSMOS_PROTO_URL    = https://raw.githubusercontent.com/regen-network/cosmos-proto/master
 
 TM_CRYPTO_TYPES     = third_party/proto/tendermint/crypto
