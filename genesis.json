@@ -244,7 +244,7 @@
         "deposit_params": {
           "min_deposit": [
             {
-              "denom": "stake",
+              "denom": "avince",
               "amount": "10000000"
             }
           ],
