@@ -28,7 +28,7 @@ init:
 
 
 genesis:
-  chain_id: "vinced_5000-1"
+  chain_id: "vince_1000-1"
   app_state:
     crisis:
       constant_fee:

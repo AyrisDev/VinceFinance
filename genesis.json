@@ -30,7 +30,7 @@
           "sig_verify_cost_ed25519": "590",
           "sig_verify_cost_secp256k1": "1000"
         },
-        "accounts": [
+        "accounts": [ 
           {
             "@type": "/ethermint.types.v1.EthAccount",
             "base_account": {
